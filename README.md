@@ -25,6 +25,13 @@ AWS documentation can be dense and overwhelming. These quizzes are designed to:
 **Difficulty**: Intermediate to Advanced  
 **[Take Quiz →](./fsx-ontap-sql-server-ha-quiz.html)**
 
+### 2. AWS Fault Injection Service (FIS)
+**Focus**: Chaos Engineering & Resilience Testing with AWS FIS  
+**Topics**: Experiment templates, actions, targets, stop conditions, IAM roles, multi-account experiments, `aws:ssm:send-command`, emptyTargetResolutionMode, confused deputy protection  
+**Questions**: 20  
+**Difficulty**: Beginner to Intermediate  
+**[Take Quiz →](./aws-fis-quiz.html)**
+
 ## Features
 
 - 🎨 **Beautiful Dark Theme** - Easy on the eyes during long study sessions
@@ -60,14 +67,46 @@ Have ideas for new quizzes or improvements? Feel free to:
 - Submit a pull request with new quizzes
 - Share feedback on existing quizzes
 
-## Quiz Creation Guidelines
+## Creating New Quizzes
 
-If you'd like to contribute a quiz:
-1. **Focus on real scenarios** - Base questions on actual use cases
-2. **Encourage doc reading** - Questions should require understanding, not just recognition
-3. **Provide thorough explanations** - Help users learn from every question
-4. **Link to official docs** - Always include AWS documentation references
-5. **Follow the existing format** - Use the same HTML/CSS structure for consistency
+### Using the Cursor AI Skill (Recommended)
+
+This repository includes a [Cursor](https://cursor.sh) AI skill that automates quiz creation end-to-end. Open this project in Cursor, attach the `create-quiz` skill, then invoke it in the chat with one or more documentation URLs:
+
+```
+/create-quiz https://docs.aws.amazon.com/lambda/latest/dg/welcome.html
+```
+
+The skill will:
+1. **Fetch and read** the provided AWS (or other) documentation pages
+2. **Generate 20 questions** covering key concepts, best practices, edge cases, and real-world scenarios
+3. **Create a standalone HTML file** (e.g. `aws-lambda-quiz.html`) in the project root, based on the gold standard template
+4. **Validate** question structure, correct answer indexes, and documentation links
+
+You can customise the output by adding parameters to the prompt:
+
+| Parameter | Example | Default |
+|-----------|---------|---------|
+| Question count | `25 questions` | 20 |
+| Quiz title | `title: "AWS Lambda"` | Inferred from docs |
+| Badge label | `badge: "Lambda"` | Inferred from docs |
+| Color scheme | `color: orange` | Suggested by topic area |
+
+After the file is generated:
+1. Add a card for the new quiz in `index.html` (follow the pattern of the existing cards)
+2. Add an entry to the **Available Quizzes** section of this README
+3. Commit and push — GitHub Pages will publish it automatically
+
+### Manual Quiz Creation Guidelines
+
+If you prefer to create a quiz by hand:
+1. **Copy the template** — duplicate `fsx-ontap-sql-server-ha-quiz.html` and rename it
+2. **Replace only the targeted fields** — title, badge, subtitle, accent colors, and the `questions` array
+3. **Focus on real scenarios** — base questions on actual use cases, not trivial recall
+4. **Encourage doc reading** — questions should require understanding, not just recognition
+5. **Provide thorough explanations** — explain why wrong answers are wrong, not just why the correct one is right
+6. **Link to official docs** — always include an AWS (or relevant) documentation URL per question
+7. **Keep the HTML/JS structure intact** — do not modify element IDs, class names, or JavaScript logic
 
 ## License
 
